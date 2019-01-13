@@ -5,6 +5,10 @@ import {RentalListItemComponent} from "./rental-list-item/rental-list-item.compo
 import {RentalComponent} from "./rental.component";
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import {RouterModule, Routes} from "@angular/router";
+import {NgPipesModule} from "ngx-pipes";
+import {UppercasePipe} from "../common/pipes/uppercase.pipe";
+import {MapModule} from "../common/map/map.module";
+import {HttpClientModule} from "@angular/common/http";
 
 
 const routes: Routes = [
@@ -19,11 +23,15 @@ const routes: Routes = [
     RentalComponent,
     RentalListComponent,
     RentalListItemComponent,
-    RentalDetailComponent
+    RentalDetailComponent,
+    UppercasePipe
   ],
  imports:[
    CommonModule,
-   RouterModule.forChild(routes)
+   RouterModule.forChild(routes),
+   NgPipesModule,
+   HttpClientModule,
+   MapModule
  ]
 })
 export class RentalModule { }

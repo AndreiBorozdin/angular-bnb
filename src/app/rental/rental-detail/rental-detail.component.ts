@@ -11,6 +11,7 @@ import {Rental} from "../shared/rental.model";
 export class RentalDetailComponent implements OnInit {
   rental: Rental
 
+
   constructor(private route: ActivatedRoute, private rentalService: RentalService) { }
 
   ngOnInit() {
