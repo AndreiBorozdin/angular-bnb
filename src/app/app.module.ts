@@ -5,6 +5,10 @@ import { HeaderComponent } from './common/header/header.component';
 import {RentalModule} from "./rental/rental.module";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/rentals', pathMatch: 'full'}
@@ -18,7 +22,11 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     RentalModule,
-    AuthModule
+    AuthModule,
+    BrowserAnimationsModule,
+    NgbModule.forRoot(),
+    ToastrModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent]
