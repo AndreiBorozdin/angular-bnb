@@ -12,6 +12,7 @@ import {MapModule} from "../common/map/map.module";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "../auth/shared/auth.guard";
 import { RentalDeatilBookingComponent } from './rental-detail/rental-deatil-booking/rental-deatil-booking.component';
+import {FormsModule} from "@angular/forms";
 
 
 const routes: Routes = [
@@ -35,7 +36,7 @@ const routes: Routes = [
    RouterModule.forChild(routes),
    NgPipesModule,
    HttpClientModule,
-   MapModule, Daterangepicker
+   MapModule, Daterangepicker, FormsModule
  ]
 
 })
