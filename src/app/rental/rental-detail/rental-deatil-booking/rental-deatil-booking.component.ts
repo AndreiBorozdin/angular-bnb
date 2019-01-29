@@ -6,6 +6,7 @@ import {Rental} from "../../shared/rental.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BookingService} from "../../../booking/shared/booking.service";
 import {DaterangePickerComponent} from "ng2-daterangepicker";
+import {AuthService} from "../../../auth/shared/auth.service";
 
 
 
@@ -32,7 +33,7 @@ export class RentalDeatilBookingComponent implements OnInit {
     autoUpdateInput: false,
     isInvalidDate: this.checkForInvalidDates.bind(this)
   };
-   constructor(private helper: HelperService,
+   constructor(public auth: AuthService, private helper: HelperService,
                private modalService: NgbModal,
                private bookingService: BookingService,
               ){

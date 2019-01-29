@@ -13,7 +13,7 @@ exports.createBooking = function (req, res) {
         .populate('user')
         .exec(function (err, foundRental) {
           if(err){
-            return res.status(422).send({errors: MongooseHelpers.normaliseErrors(err.errors)});
+            return res.status(422).send({errors: MongooseHelpers.normalizeErrors(err.errors)});
           }
           if(foundRental.user.id === user.id){
             return res.status(422).send({errors: [{title: 'Invalid User!', detail: 'Cannot create booking on your rental!'}]});
@@ -24,7 +24,7 @@ exports.createBooking = function (req, res) {
             foundRental.bookings.push(booking);
             booking.save(function (err) {
               if(err){
-                return res.status(422).send({errors: MongooseHelpers.normaliseErrors(err.errors)});
+                return res.status(422).send({errors: MongooseHelpers.normalizeErrors(err.errors)});
               }
               foundRental.save();
               User.update({_id: user.id}, {$push: {bookings: booking}}, function () {
