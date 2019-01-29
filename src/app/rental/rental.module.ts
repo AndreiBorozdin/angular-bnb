@@ -13,12 +13,16 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "../auth/shared/auth.guard";
 import { RentalDeatilBookingComponent } from './rental-detail/rental-deatil-booking/rental-deatil-booking.component';
 import {FormsModule} from "@angular/forms";
+import { RentalSearchComponent } from './rental-search/rental-search.component';
+import { RentalCreateComponent } from './rental-create/rental-create.component';
 
 
 const routes: Routes = [
   {path: 'rentals', component: RentalComponent, children: [
       {path: '', component: RentalListComponent},
-      {path: ':rentalId', component: RentalDetailComponent, canActivate: [AuthGuard]}
+      {path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard]},
+      {path: ':rentalId', component: RentalDetailComponent},
+      {path: ':city/homes', component:RentalSearchComponent}
     ]}
 
 ];
@@ -29,7 +33,9 @@ const routes: Routes = [
     RentalListItemComponent,
     RentalDetailComponent,
     UppercasePipe,
-    RentalDeatilBookingComponent
+    RentalDeatilBookingComponent,
+    RentalSearchComponent,
+    RentalCreateComponent
   ],
  imports:[
    CommonModule,

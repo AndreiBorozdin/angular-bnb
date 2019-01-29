@@ -10,7 +10,7 @@ exports.auth = function (req, res) {
   }
   User.findOne({email}, function (err, user) {
     if(err){
-      return res.status(422).send({errors: MongooseHelpers.normaliseErrors(err.errors)});
+      return res.status(422).send({errors: MongooseHelpers.normalizeErrors(err.errors)});
     }
     if(!user){
       return res.status(422).send({errors: [{title: 'Invalid User!', detail: 'User does not exist!'}]});
@@ -40,7 +40,7 @@ exports.register =  function(req, res) {
 
   User.findOne({email}, function(err, existingUser) {
     if (err) {
-      return res.status(422).send({errors: MongooseHelpers.normaliseErrors(err.errors)});
+      return res.status(422).send({errors: MongooseHelpers.normalizeErrors(err.errors)});
     }
 
     if (existingUser) {
@@ -55,7 +55,7 @@ exports.register =  function(req, res) {
 
     user.save(function(err) {
       if (err) {
-        return res.status(422).send({errors: MongooseHelpers.normaliseErrors(err.errors)});
+        return res.status(422).send({errors: MongooseHelpers.normalizeErrors(err.errors)});
       }
 
       return res.json({'registered': true});
@@ -68,7 +68,7 @@ exports.authMiddleware = function (req, res, next) {
    const user = parseToken(token);
    User.findById(user.userId, function (err, user) {
      if(err){
-       return res.status(422).send({errors: MongooseHelpers.normaliseErrors(err.errors)});
+       return res.status(422).send({errors: MongooseHelpers.normalizeErrors(err.errors)});
      }
      if(user){
        res.locals.user = user;
