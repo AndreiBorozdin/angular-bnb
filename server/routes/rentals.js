@@ -8,6 +8,18 @@ const {normalizeErrors} = require('../helpers/mongoose');
 router.get('/secret', UserCtrl.authMiddleware, function (req, res) {
   res.json({'secret': true});
 });
+
+router.get('/manage', UserCtrl.authMiddleware, function (req, res) {
+  const user = res.locals.user;
+  Rental.where({user})
+    .populate('bookings')
+    .exec(function (err, foundRentals) {
+      if(err){
+        return res.status(422).send({errors: normalizeErrors(err.errors)});
+      }
+      res.json(foundRentals)
+    })
+});
 router.get('/:id', function (req, res) {
   const rentalId = req.params.id
   Rental.findById(rentalId)
@@ -20,8 +32,48 @@ router.get('/:id', function (req, res) {
         })
       }
       return res.json(foundRental);
-    })
+    });
 });
+
+
+
+router.delete('/:id', UserCtrl.authMiddleware, function (req, res) {
+   const user = res.locals.user;
+   Rental.findById(req.params.id)
+         .populate('user', '_id')
+         .populate({
+           path: 'bookings',
+           select: 'startAt',
+           match: {startAt: {$gt: new Date()}}
+         })
+         .exec(function (err, foundRental) {
+            if(err){
+              return res.status(422).send({errors: normalizeErrors(err.errors)});
+            }
+            if(user.id !== foundRental.user.id){
+              return res.status(422).send({
+                errors: [{title: 'Invalid User', default: 'You are not rental owner'}]
+              })
+            }
+            if(foundRental.bookings.length > 0){
+              return res.status(422).send({
+                errors: [{title: 'Active bookings', default: 'Cannot delete rental from active bookings!'}]
+              })
+            }
+            foundRental.remove(function (err) {
+              if(err){
+                return res.status(422).send({errors: normalizeErrors(err.errors)});
+              }
+              return res.json({
+                'status': 'deleted'
+              });
+            });
+         });
+});
+
+
+
+
 router.post('', UserCtrl.authMiddleware, function(req, res) {
   const { title, city, street, category, image, shared, bedrooms, description, dailyRate } = req.body;
   const user = res.locals.user;
