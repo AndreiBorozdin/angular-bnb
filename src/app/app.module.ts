@@ -8,6 +8,7 @@ import {AuthModule} from "./auth/auth.module";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ManageModule} from "./manage/manage.module";
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent
+
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,7 @@ const routes: Routes = [
     RentalModule,
     AuthModule,
     BrowserAnimationsModule,
+    ManageModule,
     NgbModule.forRoot(),
     ToastrModule.forRoot()
 

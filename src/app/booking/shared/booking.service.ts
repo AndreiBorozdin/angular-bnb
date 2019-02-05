@@ -13,4 +13,7 @@ export class BookingService {
   createBooking(booking: Booking): Observable<any>{
     return this.http.post('/api/v1/bookings', booking)
   }
+  getUserBookings(): Observable<any>{
+    return this.http.get(`/api/v1/bookings/manage`)
+  }
 }
