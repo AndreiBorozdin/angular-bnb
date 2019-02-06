@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const MongooseHelpers = require('../helpers/mongoose');
 const jwt = require('jsonwebtoken');
-const {SECRET} = require('../config/dev')
+const {SECRET} = require('../config')
 
 exports.auth = function (req, res) {
   const {email, password} = req.body;
