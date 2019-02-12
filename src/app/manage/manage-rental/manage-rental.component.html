@@ -12,7 +12,8 @@
             </span>
           </div>
           <div class="card-footer text-muted">
-            <p>Created at {{rental.createdAt | date: 'short'}}</p> <!-- Created At -->
+            <p>Created at {{rental.createdAt | date: 'short'}}</p>
+            <a class="btn btn-bwm" routerLink="/rentals/{{rental._id}}/edit">Edit</a>
             <button
               type="button"
               (click)="rentalDeleteIndex = i"
@@ -33,7 +34,7 @@
       <div class="alert alert-warning">
         You dont have any rentals currenty created. If you want advertised your property
         please follow this link.
-        <a class="btn btn-bwm" routerLink="/rentals/new">Register Rental</a> <!-- Link to rentals/new -->
+        <a class="btn btn-bwm" routerLink="/rentals/new">Register Rental</a>
       </div>
     </div>
   </div>

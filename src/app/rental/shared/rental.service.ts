@@ -26,4 +26,10 @@ export class RentalService {
   deleteRental(rentalId: string):Observable<any>{
     return this.http.delete(`/api/v1/rentals/${rentalId}`)
   }
+  updateRental(rentalId: string, rentalData: any): Observable<any> {
+    return this.http.patch(`/api/v1/rentals/${rentalId}`, rentalData);
+  }
+  verifyRentalUser(rentalId: string): Observable<any>{
+    return this.http.get(`api/v1/rentals/${rentalId}/verify-user`)
+  }
 }

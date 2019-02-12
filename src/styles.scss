@@ -3,6 +3,7 @@
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
 @import "../node_modules/ngx-toastr/toastr.css";
 @import "variables";
+@import "rental";
 html, body, p {
   color: $main-text-color;
 }
@@ -21,5 +22,15 @@ html, body, p {
   color:black !important;
   cursor: pointer !important;
   text-decoration: none !important;
+}
+.inline{
+  display: inline-block;
+}
+.btn-editable{
+  margin-left: 5px;
+  font-size: 12px;
+}
+.editable-component{
+
 }
 
