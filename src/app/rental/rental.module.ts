@@ -6,7 +6,7 @@ import {RentalListItemComponent} from "./rental-list-item/rental-list-item.compo
 import {RentalComponent} from "./rental.component";
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import {RouterModule, Routes} from "@angular/router";
-import {NgPipesModule} from "ngx-pipes";
+import {NgPipesModule, UcWordsPipe} from "ngx-pipes";
 import {UppercasePipe} from "../common/pipes/uppercase.pipe";
 import {MapModule} from "../common/map/map.module";
 import {HttpClientModule} from "@angular/common/http";
@@ -15,12 +15,16 @@ import { RentalDeatilBookingComponent } from './rental-detail/rental-deatil-book
 import {FormsModule} from "@angular/forms";
 import { RentalSearchComponent } from './rental-search/rental-search.component';
 import { RentalCreateComponent } from './rental-create/rental-create.component';
+import { RentalUpdateComponent } from './rental-update/rental-update.component';
+import {EditableModule} from "../common/components/editable.module";
+import {RentalGuard} from "./shared/rental.guard";
 
 
 const routes: Routes = [
   {path: 'rentals', component: RentalComponent, children: [
       {path: '', component: RentalListComponent},
-      {path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard]},
+      {path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard, RentalGuard]},
+      {path: ':rentalId/edit', component: RentalUpdateComponent, canActivate: [AuthGuard]},
       {path: ':rentalId', component: RentalDetailComponent},
       {path: ':city/homes', component:RentalSearchComponent}
     ]}
@@ -35,15 +39,22 @@ const routes: Routes = [
     UppercasePipe,
     RentalDeatilBookingComponent,
     RentalSearchComponent,
-    RentalCreateComponent
+    RentalCreateComponent,
+    RentalUpdateComponent
   ],
  imports:[
    CommonModule,
    RouterModule.forChild(routes),
    NgPipesModule,
    HttpClientModule,
-   MapModule, Daterangepicker, FormsModule
- ]
+   MapModule,
+   Daterangepicker,
+   FormsModule,
+   EditableModule
+ ],
+  providers: [
+    UcWordsPipe
+  ]
 
 })
 export class RentalModule { }
