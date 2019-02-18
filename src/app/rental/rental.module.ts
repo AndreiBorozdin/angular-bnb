@@ -18,13 +18,14 @@ import { RentalCreateComponent } from './rental-create/rental-create.component';
 import { RentalUpdateComponent } from './rental-update/rental-update.component';
 import {EditableModule} from "../common/components/editable.module";
 import {RentalGuard} from "./shared/rental.guard";
+import {ImageUploadModule} from "../common/components/image-upload/image-upload.module";
 
 
 const routes: Routes = [
   {path: 'rentals', component: RentalComponent, children: [
       {path: '', component: RentalListComponent},
-      {path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard, RentalGuard]},
-      {path: ':rentalId/edit', component: RentalUpdateComponent, canActivate: [AuthGuard]},
+      {path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard]},
+      {path: ':rentalId/edit', component: RentalUpdateComponent, canActivate: [AuthGuard, RentalGuard]},
       {path: ':rentalId', component: RentalDetailComponent},
       {path: ':city/homes', component:RentalSearchComponent}
     ]}
@@ -50,10 +51,11 @@ const routes: Routes = [
    MapModule,
    Daterangepicker,
    FormsModule,
-   EditableModule
+   EditableModule,
+   ImageUploadModule
  ],
   providers: [
-    UcWordsPipe
+    UcWordsPipe, RentalGuard
   ]
 
 })
