@@ -79,6 +79,9 @@ export class RentalDeatilBookingComponent implements OnInit {
    this.modalRef = this.modalService.open(content);
 
   }
+  onPaymentConfirmed(paymentToken: any){
+   this.newBooking.paymentToken = paymentToken
+  }
   createBooking(){
      this.newBooking.rental = this.rental
     this.bookingService.createBooking(this.newBooking).subscribe(

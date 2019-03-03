@@ -9,6 +9,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ManageModule} from "./manage/manage.module";
+import {UserModule} from "./user/user.module";
+
 
 
 const routes: Routes = [
@@ -30,7 +32,9 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ManageModule,
     NgbModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    UserModule
+
 
   ],
   providers: [],

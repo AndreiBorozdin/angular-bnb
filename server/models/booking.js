@@ -9,7 +9,9 @@ const bookingSchema = new Schema({
   guests: Number,
   createdAt: {type: Date, default: Date.now},
   user: {ref: 'User', type: Schema.Types.ObjectId},
-  rental: {ref: 'Rental', type: Schema.Types.ObjectId}
+  rental: {ref: 'Rental', type: Schema.Types.ObjectId},
+  payment: {type: Schema.Types.ObjectId, ref: 'Payment'},
+  status: { type: String, default: 'pending'}
 });
 
 
