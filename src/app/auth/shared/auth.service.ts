@@ -60,5 +60,7 @@ export class AuthService {
    getUserName(): string {
     return this.decodedToken.username;
   }
-
+  public getUserId(): string {
+    return this.decodedToken.userId;
+  }
 }
